@@ -1,0 +1,72 @@
+<div class="cor">
+  <div class="signin-content">
+      <mat-card *ngIf="!hideCardLogin" class="login-card">
+          <mat-card-header class="center">
+              <mat-card-title>
+                    <ion-icon color="light" name="person-circle-outline"></ion-icon>
+                    <p>LOGIN</p>
+              </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="userLoginForm" (ngSubmit)="loginForm()" class="form center">
+              <mat-form-field class="full-width-input">
+                  <input matInput placeholder="Email" type="email" formControlName="email"  required>
+                  <mat-error *ngIf="userLoginForm.get('email').invalid">{{getErrorMessage('email','userLoginForm')}}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input">
+                  <input matInput placeholder="Senha" type="password" formControlName="senha" required>
+                  <mat-error *ngIf="userLoginForm.get('senha').invalid">{{getErrorMessage('senha','userLoginForm')}}</mat-error>
+              </mat-form-field>
+              <button type="submit" mat-raised-button>Entrar</button>     
+            </form><br/><br/>
+            <a class="link" (click)="cardCadastro()">Não possui Cadastro ?</a>
+          </mat-card-content>
+      </mat-card>
+      <mat-card *ngIf="!hideCardCadastro" class="cadastro-card">
+        <mat-card-header class="center">
+            <mat-card-title>
+                  <ion-icon color="light" name="person-circle-outline"></ion-icon>
+                  <p>CADASTRO</p>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="userCadastroForm" (ngSubmit)="cadastroForm()" class="form center">
+              <mat-form-field class="full-width-input">
+                  <input matInput placeholder="Email" type="email" formControlName="email"  required>
+                  <mat-error *ngIf="userCadastroForm.get('email').invalid">{{getErrorMessage('email','userCadastroForm')}}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input">
+                <input matInput placeholder="Nome" type="text" formControlName="nome" required>
+                <mat-error *ngIf="userCadastroForm.get('nome').invalid">{{getErrorMessage('nome','userCadastroForm')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input" appearance="fill">
+              <mat-label>Setor</mat-label>
+              <mat-select formControlName="setor" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let setor of setores.nomes" [value]="setor">
+                  {{setor}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="userCadastroForm.get('setor').invalid">{{getErrorMessage('setor','userCadastroForm')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <input matInput placeholder="Senha" type="password" formControlName="senha"required>
+              <mat-error *ngIf="userCadastroForm.get('senha').invalid">{{getErrorMessage('senha','userCadastroForm')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <input matInput placeholder="Confirmar Senha" type="password" formControlName="confirmSenha" required>
+              <mat-error *ngIf="userCadastroForm.get('confirmSenha').invalid">{{getErrorMessage('confirmSenha','userCadastroForm')}}</mat-error>
+            </mat-form-field>
+            <mat-grid-list cols="2" rowHeight="50px">
+              <mat-grid-tile>
+                  <button [disabled]="userCadastroForm.invalid"  mat-raised-button>Cadastrar</button>
+              </mat-grid-tile>
+              <mat-grid-tile >
+                <button (click)="cardLogin()" mat-raised-button>Voltar</button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </form><br/>
+        </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div *ngIf="usuario.id">
+    <div [ngSwitch]="isSubmitToday">
+        <form *ngSwitchCase="false" (ngSubmit)="onSubmit()">
+            <mat-card class="card-form" *ngIf="!hideForm">
+                <mat-card-header>
+                    <mat-icon>rate_review</mat-icon>
+                    <mat-card-title>Formulario</mat-card-title>
+                    <mat-card-subtitle>Preencher</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list *ngFor="let sintoma of sintomas">
+                        <mat-list-item>  
+                            <mat-checkbox 
+                                name="{{sintoma.tipo}}"
+                                (change)="checkSelect($event)" 
+                                color="primary">
+                                {{sintoma.descricao}}
+                            </mat-checkbox> 
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Outro ?</mat-label>
+                        <textarea 
+                            name="outro"
+                            (keyup)="checkInput($event)" 
+                            matInput></textarea>
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button  type="submit" class="btn-send" mat-button>
+                        <mat-icon>done</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+        <div class="center" *ngSwitchDefault>
+            <mat-card class="card-default">
+                <h2>
+                    Formulario {{dateToday}} Preenchido 
+                    <mat-icon> add_task</mat-icon>
+                </h2>
+            </mat-card>
+            <div *ngIf="usuario.formularios.length !== 0">
+                <mat-accordion *ngFor="let form of usuario.formularios; let i = index"  multi>
+                    <mat-expansion-panel class="panel" #panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Formulario {{form.data | date: 'dd/MM/yyyy'}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Clique para ver <mat-icon>history</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-card class="card-sintomas">
+                            <mat-card-header>
+                                <mat-icon>coronavirus</mat-icon>
+                                <mat-card-title>Sintomas Apresentados:</mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-list>
+                                <span *ngFor="let sintoma of sintomas">
+                                    <mat-list-item *ngIf="form[sintoma.tipo]">  
+                                        <span>{{sintoma.descricao}} <mat-icon>error</mat-icon></span>
+                                    </mat-list-item>
+                                </span>
+                            </mat-list>
+                            <mat-list>
+                                <mat-list-item *ngIf="form.outro">  
+                                    {{form.outro}} <mat-icon>error</mat-icon>
+                                </mat-list-item>
+                           </mat-list>
+                        </mat-card>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>
+<mat-spinner *ngIf="isLoad"></mat-spinner>
+
+
+
+
