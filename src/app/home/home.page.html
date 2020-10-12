@@ -1,6 +1,6 @@
-<div *ngIf="usuario.id">
+<div *ngIf="!isLoad">
     <div [ngSwitch]="isSubmitToday">
-        <form *ngSwitchCase="false" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formularioForm" *ngSwitchCase="false" (ngSubmit)="onSubmit()">
             <mat-card class="card-form" *ngIf="!hideForm">
                 <mat-card-header>
                     <mat-icon>rate_review</mat-icon>
@@ -10,24 +10,21 @@
                 <mat-card-content>
                     <mat-list *ngFor="let sintoma of sintomas">
                         <mat-list-item>  
-                            <mat-checkbox 
-                                name="{{sintoma.tipo}}"
-                                (change)="checkSelect($event)" 
-                                color="primary">
+                            <mat-checkbox formControlName="{{sintoma.tipo}}" color="primary">
                                 {{sintoma.descricao}}
                             </mat-checkbox> 
                         </mat-list-item>
                     </mat-list>
                     <mat-form-field class="example-full-width">
                         <mat-label>Outro ?</mat-label>
-                        <textarea 
-                            name="outro"
-                            (keyup)="checkInput($event)" 
-                            matInput></textarea>
+                        <textarea formControlName="outro" matInput></textarea>
+                        <mat-error *ngIf="formularioForm.get('outro').invalid">
+                           {{validationMessage.getErrorMessage('outro',formularioForm)}}
+                        </mat-error>
                     </mat-form-field>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button  type="submit" class="btn-send" mat-button>
+                    <button [disabled]="formularioForm.invalid" type="submit" class="btn-send" mat-button>
                         <mat-icon>done</mat-icon>
                     </button>
                 </mat-card-actions>
@@ -66,7 +63,7 @@
                             </mat-list>
                             <mat-list>
                                 <mat-list-item *ngIf="form.outro">  
-                                    {{form.outro}} <mat-icon>error</mat-icon>
+                                    <div class="text">{{form.outro}}</div> <mat-icon>error</mat-icon>
                                 </mat-list-item>
                            </mat-list>
                         </mat-card>

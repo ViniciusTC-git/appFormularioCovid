@@ -1,9 +1,8 @@
-import { BaseNotification } from "./BaseNotification";
 
 export abstract class BaseEntity {
-    id: string;
-    ativo: boolean;
-    deletado: boolean;
-    criado: Date;
-    atualizado: Date;
+    id: string = null;
+    ativo: boolean = true;
+    deletado: boolean = null;
+    criado: Date =  new Date();
+    atualizado: Date = null;
 }

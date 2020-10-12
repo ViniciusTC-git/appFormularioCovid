@@ -6,7 +6,19 @@ export class Usuario extends BaseEntity {
     setor:string = null;
     email: string = null;
     senha: string = null;
-    formularios: Formulario[] = [];
+    formularios: Array<Formulario>;
+    constructor(formulario:any){
+        super();
+        if(formulario){
+            this.ativo = true;
+            this.criado = new Date();
+            Object.entries(formulario).forEach(([key,value])=>{
+                if(this.hasOwnProperty(key)){
+                    this[key] = value;
+                }
+            });
+        }
+    }
 }
 export class Setor{
     nomes: Array<string> = [

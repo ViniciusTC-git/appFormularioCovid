@@ -15,10 +15,11 @@ import { Validator } from '../../models/Validator';
 })
 export class LoginPage implements OnInit {
   userLoginForm: FormGroup;
-  userCadastro:Usuario = new Usuario();
   userCadastroForm: FormGroup;
   hideCardLogin:boolean = false;
   hideCardCadastro:boolean = true;
+  hidePassword:boolean  = true;
+  hidePasswordConfirm:boolean = true;
   validationMessage:Validator;
   setores:Setor;
   constructor(
@@ -42,7 +43,7 @@ export class LoginPage implements OnInit {
       ])],
       nome: ['',Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z\s]*$'),
+        Validators.pattern(/^[a-zA-Z\s]*$/),
         Validators.minLength(5),
         Validators.maxLength(30)
       ])],
@@ -54,19 +55,15 @@ export class LoginPage implements OnInit {
     this.setores =  new Setor();
   }
 
-  ngOnInit() {
-    console.log('teste');
-   }
+  ngOnInit() {}
   loginForm(){
     if (!this.userLoginForm.valid) return;
 
-    let usuario = <Usuario>this.userLoginForm.value;
-    this.loginService.login(usuario).then((res)=>{
+    this.loginService.login(<Usuario>this.userLoginForm.value).then((res)=>{
         if(res.size > 0){
           this.authService.authLogin(res.docs[0].id);
         }else{
           this.alert.openSnackBar('Email ou Senha não conferem !', '', 'warning');
-          this.userLoginForm.reset();
         }
     });
     
@@ -78,15 +75,11 @@ export class LoginPage implements OnInit {
       this.alert.openSnackBar('Senhas não conferem !', '', 'warning');
       return false;
     }else{
-      Object.assign(this.userCadastro, this.userCadastroForm.value)
-      this.userCadastroForm.setValue(this.userCadastro);
-      this.userCadastro.ativo = true;
-      this.userCadastro.criado = new Date();
-      console.log(this.userCadastro)
-      /*this.loginService.validateUsuario(this.userCadastro).then((values)=>{
+      const usuario = new Usuario(this.userCadastroForm.value);
+      this.loginService.validateUsuario(usuario).then((values)=>{
         const isUsuario = (values[0].size > 0 || values[1].size > 0)
         if(!isUsuario){
-          this.usuarioService.postUsuario(this.userCadastro).then((res)=>{
+          this.usuarioService.postUsuario(usuario).then((res)=>{
             console.log(res);
               if(res.id){
                 this.alert.openSnackBar('Usuario Cadastrado !', '', 'success');
@@ -98,7 +91,7 @@ export class LoginPage implements OnInit {
         }else{
           this.alert.openSnackBar('Email ou Senha já existentes !', '', 'warning');
         }
-      })*/
+      })
     }
   }
   cardLogin(){
@@ -110,16 +103,6 @@ export class LoginPage implements OnInit {
     this.hideCardCadastro = false;
     this.hideCardLogin= true;
     this.userCadastroForm.reset();
-  }
-  getErrorMessage(action:string,form:string){
-    const erros = this.validationMessage[action].map((element) => {
-      if (this[form].get(action).hasError(element.type)) {
-        return element.message;
-      }
-    }).filter((erro)=>{
-      return erro;
-    });
-    return erros.join();
   }
   
 }

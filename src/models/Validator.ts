@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export class Validator{
     nome: Array<ValidatorType> = [
         new ValidatorType('required','Nome é obrigatorio !'),
@@ -18,6 +20,16 @@ export class Validator{
     setor:Array<ValidatorType> = [
         new ValidatorType('required','Setor é obrigatorio !'),
     ];
+    outro:Array<ValidatorType> = [
+        new ValidatorType('pattern','Somente Caracteres !'),
+    ];
+    getErrorMessage = (action:string,form:FormControl) => {
+        return this[action].map((element) => {
+            return form.get(action).hasError(element.type) ? element.message : undefined;
+        }).filter((erro)=>{
+          return erro;
+        }).join();
+    }
 }
 class ValidatorType {
     type: 'required'|'pattern'|'minlength'|'maxlength'|'email';

@@ -1,8 +1,11 @@
 mat-spinner{
     margin-left: auto;
     margin-right: auto; 
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 5%;
+}
+mat-icon,mat-error{
+    color: white;
 }
 .center{
     text-align:center;
@@ -60,7 +63,10 @@ mat-spinner{
     margin-top: 5%;
     background-color: #cececec5;
 }
-
+.text{
+    text-align: justify;
+    word-break: break-all;
+}
 .danger{
     background-color: #da352f;
     color:white;

@@ -1,4 +1,11 @@
 
+mat-icon{
+    color: white;
+    font-size: 35px;
+}
+mat-error{
+    color:rgb(255, 255, 255);
+}
 .cor{
     background-color: #ffffff;
 }
@@ -10,11 +17,6 @@
   height: 75%;
   background-color: #17bdc9;
   text-align: center;
-}
-
-.login-card p{
-    color:#ffffff;
-    text-align: center;
 }
 .cadastro-card p{
     color:#ffffff;
@@ -29,9 +31,8 @@
     background-color: #17bdc9;
     text-align: center;
 }
-ion-icon{
-    width:50px;
-    height:50px;
+.mat-raised-button{
+    text-align: center;
 }
 .signin-content {
     padding: 80px 1rem;
@@ -41,7 +42,6 @@ ion-icon{
 }
 .center{
     justify-content:center;
-    align-items:center;
 }
 .mat-raised-button{
     background-color: rgb(50, 42, 163);
@@ -57,10 +57,10 @@ ion-icon{
 
 @media only screen and (max-width: 600px) {
     .cadastro-card {
-        width: 90%;
+        width: 95%;
     }
     .login-card{
-        width: 90%;
+        width: 95%;
     }
   }
 
