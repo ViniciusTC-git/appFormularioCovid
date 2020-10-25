@@ -1,0 +1,30 @@
+
+.snack-container{
+    display: flex;
+}
+.snack-container > div:nth-child(1){
+    width:20%;
+}
+.snack-container > div:nth-child(2){
+    width: 80%;
+    margin-top: 2px;
+}
+mat-icon{
+    font-size:35px;
+}
+::ng-deep.success{
+    background-color: #25c247;
+    color:white;
+ }
+ ::ng-deep.danger{
+    background-color: #c23225;
+    color:white;
+ }
+ ::ng-deep.warning{
+    background-color: #eeca2a;
+    color:rgb(255, 255, 255);
+ }
+ ::ng-deep.info{
+    background-color: #43b8fb;
+    color:rgb(255, 255, 255);
+ }

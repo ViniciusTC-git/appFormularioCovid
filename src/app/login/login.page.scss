@@ -1,0 +1,67 @@
+
+mat-icon{
+    color: white;
+    font-size: 35px;
+}
+mat-error{
+    color:rgb(255, 255, 255);
+}
+.cor{
+    background-color: #ffffff;
+}
+.login-card {
+  margin-right: auto;
+  margin-left:auto;
+  max-width: 800px;
+  width: 95%;
+  height: 75%;
+  background-color: #17bdc9;
+  text-align: center;
+}
+.cadastro-card p{
+    color:#ffffff;
+    text-align: center;
+}
+.cadastro-card {
+    margin-right: auto;
+    margin-left:auto;
+    max-width: 800px;
+    width: 95%;
+    height: 75%;
+    background-color: #17bdc9;
+    text-align: center;
+}
+.mat-raised-button{
+    text-align: center;
+}
+.signin-content {
+    padding: 80px 1rem;
+}
+.full-width-input {
+    width: 100%;
+}
+.center{
+    justify-content:center;
+}
+.mat-raised-button{
+    background-color: rgb(50, 42, 163);
+    color:white;
+}
+.link{
+   color:rgba(255, 255, 255, 0.876);
+   cursor:pointer;
+}
+.link:hover {
+    color: rgb(52, 250, 79);
+}
+
+@media only screen and (max-width: 600px) {
+    .cadastro-card {
+        width: 95%;
+    }
+    .login-card{
+        width: 95%;
+    }
+  }
+
+
