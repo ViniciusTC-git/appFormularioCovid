@@ -9,6 +9,10 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private userLogged:string;
+<<<<<<< HEAD
+=======
+  private adminId:string = 'KoEWrGCZ1Wk4Zo5PDk83';
+>>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -22,7 +26,15 @@ export class AuthService {
   authLogin(id:string){
       this.loggedIn.next(true);
       this.userLogged = id;
+<<<<<<< HEAD
       this.router.navigate(['/Home']);
+=======
+      if(this.userLogged === this.adminId){
+        this.router.navigate(['/HomeAdmin']);
+      }else{
+        this.router.navigate(['/Home']);
+      }
+>>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
   }
   authLogout() {       
     this.loggedIn.next(false);

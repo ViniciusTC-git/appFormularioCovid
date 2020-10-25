@@ -6,7 +6,11 @@ export class Usuario extends BaseEntity {
     setor:string = null;
     email: string = null;
     senha: string = null;
+<<<<<<< HEAD
     formularios: Array<Formulario>;
+=======
+    formularios: Array<Formulario> = new Array();
+>>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
     constructor(formulario:any){
         super();
         if(formulario){
