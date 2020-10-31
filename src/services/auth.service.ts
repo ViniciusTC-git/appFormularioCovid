@@ -21,13 +21,13 @@ export class AuthService {
   constructor(private router: Router) { }
 
   authLogin(id:string){
-      this.loggedIn.next(true);
-      this.userLogged = id;
-      if(this.userLogged === this.adminId){
-        this.router.navigate(['/HomeAdmin']);
-      }else{
-        this.router.navigate(['/Home']);
-      }
+    this.loggedIn.next(true);
+    this.userLogged = id;
+    if(this.userLogged === this.adminId){
+      this.router.navigate(['/HomeAdmin']);
+    }else{
+      this.router.navigate(['/Home']);
+    }
   }
   authLogout() {       
     this.loggedIn.next(false);
