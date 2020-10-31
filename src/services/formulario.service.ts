@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Formulario } from '../models/Formulario';
 import { JsonConversion } from '../utils/JsonConversion';
-import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
