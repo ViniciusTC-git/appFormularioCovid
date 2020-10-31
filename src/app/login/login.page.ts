@@ -76,18 +76,10 @@ export class LoginPage implements OnInit {
       return false;
     }else{
       const usuario = new Usuario(this.userCadastroForm.value);
-<<<<<<< HEAD
-      this.loginService.validateUsuario(usuario).then((values)=>{
-        const isUsuario = (values[0].size > 0 || values[1].size > 0)
-        if(!isUsuario){
-          this.usuarioService.postUsuario(usuario).then((res)=>{
-            console.log(res);
-=======
       this.loginService.validateUsuario(usuario).then(([nome,senha])=>{
         const isUsuario = (nome.size > 0 || senha.size > 0)
         if(!isUsuario){
           this.usuarioService.postUsuario(usuario).then((res)=>{
->>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
               if(res.id){
                 this.alert.openSnackBar('Usuario Cadastrado !', '', 'success');
                 this.cardLogin();

@@ -7,10 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Validator } from '../../models/Validator';
 import { FormularioService } from '../../services/formulario.service';
-<<<<<<< HEAD
-=======
 import { Router } from '@angular/router';
->>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
 
 @Component({
   selector: 'app-home',
@@ -59,20 +56,10 @@ export class HomePage implements OnInit{
     const usuarioRequest =  this.usuarioService.getUsuario(this.auth.getUserLogged);
     usuarioRequest.subscribe((dataUser)=>{
       Object.assign(this.usuario,dataUser.data());
-      this.usuario.id = this.auth.getUserLogged;
+      this.usuario.id = dataUser.id
       const formulariosRequest = this.formularioService.getFormsByUser(this.usuario.id);
       formulariosRequest.subscribe((dataForms)=>{
         this.usuario.formularios = dataForms.map((dataForm)=>{
-<<<<<<< HEAD
-            return Object.assign(new Formulario(null),dataForm.payload.doc.data());
-          })
-          if(this.usuario.formularios && this.usuario.formularios.length !== 0){
-            let formulario = this.usuario.formularios[0];
-            let lastData = new Date(formulario.data).toLocaleDateString();
-            let todayDate = new Date().toLocaleDateString();
-            this.isSubmitToday = (lastData === todayDate);
-         }
-=======
           return Object.assign(new Formulario(null),dataForm.payload.doc.data());
         })
         if(this.usuario.formularios && this.usuario.formularios.length !== 0){
@@ -82,7 +69,6 @@ export class HomePage implements OnInit{
           let todayDate = new Date().toLocaleDateString();
           this.isSubmitToday = (lastData === todayDate);
         }
->>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
         this.isLoad=false;
       });
     });
