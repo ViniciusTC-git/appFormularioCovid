@@ -63,11 +63,10 @@ export class HomePage implements OnInit{
           return Object.assign(new Formulario(null),dataForm.payload.doc.data());
         })
         if(this.usuario.formularios && this.usuario.formularios.length !== 0){
-          let lastFormulario = this.usuario.formularios.length;
-          let formulario = this.usuario.formularios[lastFormulario - 1];
-          let lastData = new Date(formulario.data).toLocaleDateString();
           let todayDate = new Date().toLocaleDateString();
-          this.isSubmitToday = (lastData === todayDate);
+          this.isSubmitToday = this.usuario.formularios.some((formulario)=>{
+            return new Date(formulario.data).toLocaleDateString() === todayDate;
+          });
         }
         this.isLoad=false;
       });

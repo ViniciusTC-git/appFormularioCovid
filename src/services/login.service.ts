@@ -15,8 +15,13 @@ export class LoginService {
     .get();
   }
   public validateUsuario(usuario:Usuario){
-    const password = this.db.collection("usuarios").ref.where('senha','==',usuario.senha).get();
-    const email =this.db.collection("usuarios").ref.where('email','==',usuario.email).get();
-    return Promise.all([password,email]);
+    const consultaPassword = this.db.collection("usuarios").ref
+    .where('senha','==',usuario.senha)
+    .get();
+    const consultaPasswordEmail = this.db.collection("usuarios").ref
+    .where('email','==',usuario.email)
+    .get();
+    
+    return Promise.all([consultaPassword,consultaPasswordEmail]);
   }
 }

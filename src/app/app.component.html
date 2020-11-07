@@ -9,9 +9,15 @@
       <mat-sidenav-container>
         <mat-sidenav class="example-sidenav"  #sidenav>
             <mat-nav-list>
-                <mat-list-item (click)="logout()">
-                  <h4>Sair</h4>
-                </mat-list-item>
+              <mat-list-item [routerLink]="(isAdmin | async) ? ['/HomeAdmin'] : ['/Home']" >
+                <h4>Principal</h4>
+              </mat-list-item>
+              <mat-list-item [routerLink]="['/HomeAdmin/portaria']" *ngIf="isAdmin | async">
+                <h4>Portaria</h4>
+              </mat-list-item>
+              <mat-list-item (click)="logout()">
+                <h4>Sair</h4>
+              </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

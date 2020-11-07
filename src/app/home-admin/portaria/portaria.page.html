@@ -1,0 +1,16 @@
+<div *ngIf="registrosEntrada.length > 0 else load">
+  <div *ngFor="let registro of registrosEntrada">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{registro.data}}</mat-card-title>
+        <mat-card-subtitle>Usuario sem mascara</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <img width="450" height="350" src="{{registro.img}}">
+      </mat-card-content>
+     </mat-card>
+   </div>
+</div>
+<ng-template #load>
+  <mat-spinner></mat-spinner>
+</ng-template>
