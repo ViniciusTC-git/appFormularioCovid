@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 
 export class Validator{
     nome: Array<ValidatorType> = [
@@ -23,7 +23,7 @@ export class Validator{
     outro:Array<ValidatorType> = [
         new ValidatorType('pattern','Somente Caracteres !'),
     ];
-    getErrorMessage = (action:string,form:FormControl) => {
+    getErrorMessage = (action:string,form:FormGroup) => {
         return this[action].map((element) => {
             return form.get(action).hasError(element.type) ? element.message : undefined;
         }).filter((erro)=>{

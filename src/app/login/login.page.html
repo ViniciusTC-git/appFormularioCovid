@@ -24,7 +24,7 @@
                   <button mat-icon-button matSuffix 
                     (click)="hidePassword = !hidePassword"
                     [attr.aria-label]="'Esconder Senha'" 
-                    [attr.aria-pressed]="hide">
+                    [attr.aria-pressed]="hidePassword">
                     <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                   <mat-error *ngIf="userLoginForm.get('senha').invalid">
@@ -78,7 +78,7 @@
               <button mat-icon-button matSuffix 
                   (click)="hidePassword = !hidePassword"
                   [attr.aria-label]="'Esconder Senha'" 
-                  [attr.aria-pressed]="hide">
+                  [attr.aria-pressed]="hidePassword">
                   <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               <mat-error *ngIf="userCadastroForm.get('senha').invalid">
@@ -95,7 +95,7 @@
               <button mat-icon-button matSuffix 
                   (click)="hidePasswordConfirm = !hidePasswordConfirm " 
                   [attr.aria-label]="'Esconder Senha'" 
-                  [attr.aria-pressed]="hide">
+                  [attr.aria-pressed]="hidePasswordConfirm">
                   <mat-icon>{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               <mat-error *ngIf="userCadastroForm.get('confirmSenha').invalid">
