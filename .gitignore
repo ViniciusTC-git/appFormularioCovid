@@ -16,6 +16,8 @@ $RECYCLE.BIN/
 *.log
 log.txt
 npm-debug.log*
+firestore.rules
+*.cache
 
 /.idea
 /.ionic
@@ -29,7 +31,4 @@ npm-debug.log*
 /platforms
 /plugins
 /www
-<<<<<<< HEAD
-
-=======
->>>>>>> fb6230853c07904e51e06a4c0a27b743af625cbc
+/environments
