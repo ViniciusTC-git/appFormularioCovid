@@ -1,81 +1,19 @@
-mat-spinner{
-    margin-left: auto;
-    margin-right: auto; 
-    margin-top: 10%;
-    margin-bottom: 5%;
+mat-card {
+    margin-top: 3vh;
 }
-mat-icon,mat-error{
-    color: white;
+
+.formulario {
+    height: 100vh;
 }
-.center{
-    text-align:center;
-    margin-top: 50px;
-}
-.card-sintomas{
-    background-color: #17bdc9;
+.formulario mat-card-title, mat-icon {
     color:white;
 }
-.card-sintomas  mat-card-title,mat-list-item{
-    color:white;
-}
-.card-sintomas mat-list-item mat-icon{
-    color:#c93217
-}
-.card-form{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    background-color: #17bdc9;
-}
-.card-form  mat-card-title,mat-icon{
-    color:white;
-}
-.card-form > mat-card-actions{
+.formulario > mat-card-actions {
     text-align: center;
 }
-.card-form > mat-checkbox{
-    color:white;
-}
-.btn-send{
-    background-color: rgb(12, 114, 12);
-}
-.btn-reset{
-    background-color: #bdb10f;
-}
-.card-default{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    background-color: #25c247;
-    color:white;
-}
-.example-full-width {
-    width: 100%;
-}
-.panel{
-    width:80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    background-color: #cececec5;
-}
-.text{
-    text-align: justify;
-    word-break: break-all;
-}
-.danger{
-    background-color: #da352f;
+.formulario > mat-checkbox {
     color:white;
 }
 
-@media only screen and (max-width: 650px) {
-    .card-form {
-        width: 90%;
-    }
-  }
 
 

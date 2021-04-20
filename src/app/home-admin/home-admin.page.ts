@@ -11,8 +11,9 @@ import { Formulario, Sintoma } from 'src/models/Formulario';
 })
 export class HomeAdminPage implements OnInit {
 
-  usuarios:Array<Usuario> = new Array();
-  sintomas:Array<Sintoma> = [];
+  usuarios: Array<Usuario> = new Array();
+  sintomas: Array<Sintoma> = [];
+
   constructor( 
     private usuarioService:UsuarioService,
     private formularioService:FormularioService,

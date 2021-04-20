@@ -13,29 +13,26 @@ export class AppComponent {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  isLogged: Observable<boolean>;  
-  isAdmin : Observable<boolean>;  
+  menu_options: [];
+
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) {
     this.initializeApp();
-    this.router.events.subscribe(() => {
-      if(this.sidenav.opened){
-        this.sidenav.toggle();
-      }
-    })
   }
+
   initializeApp() {
-    this.isLogged = this.authService.isLoggedIn;
-    this.isAdmin = this.authService.isAdminIn;
+    this.router.events.subscribe(() => !this.sidenav.opened || this.sidenav.toggle())
   }
+
   ionViewDidLeave(){
     this.sidenav.toggle();
   }
-  logout(){
+
+  onLogout() {
     this.sidenav.toggle();
-    this.authService.authLogout();
+    this.authService.logout();
   }
  
 }

@@ -9,10 +9,11 @@ export class Validator{
     ];
     email: Array<ValidatorType> = [
         new ValidatorType('required','Email é obrigatorio !'),
-        new ValidatorType('email','Insira um Email Valido !'),
+        new ValidatorType('pattern','Insira um Email Valido !'),
     ];
     senha: Array<ValidatorType> = [
         new ValidatorType('required','Senha é obrigatorio !'),
+        new ValidatorType('pattern','A senha deve conter, 1 carácter de cada (minusculo, maisculo, numerico,[!@#$%^&*] e ser maior ou igual a 6 caracteres !'),
     ];
     confirmSenha:Array<ValidatorType> = [
         new ValidatorType('required','Confirmação de Senha é obrigatorio !'),

@@ -6,7 +6,7 @@ import { AuthGuard } from 'src/services/auth.guard';
 
 const routes: Routes = [
   {path: '',component: HomeAdminPage},
-  {path: 'portaria',loadChildren: () => import('./portaria/portaria.module').then( m => m.PortariaPageModule),canActivate:[AuthGuard]}
+  {path: 'portaria',loadChildren: () => import('./portaria/portaria.module').then( m => m.PortariaPageModule), canActivate:[AuthGuard]}
 
 ];
 

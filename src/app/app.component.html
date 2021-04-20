@@ -1,29 +1,27 @@
 <ion-app>
-    <mat-toolbar color="primary" *ngIf="isLogged | async">
-        <mat-toolbar-row>
-          <button mat-icon-button>
-            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-          </button>
-        </mat-toolbar-row>  
-      </mat-toolbar>
-      <mat-sidenav-container>
-        <mat-sidenav class="example-sidenav"  #sidenav>
-            <mat-nav-list>
-              <mat-list-item [routerLink]="(isAdmin | async) ? ['/HomeAdmin'] : ['/Home']" >
-                <h4>Principal</h4>
-              </mat-list-item>
-              <mat-list-item [routerLink]="['/HomeAdmin/portaria']" *ngIf="isAdmin | async">
-                <h4>Portaria</h4>
-              </mat-list-item>
-              <mat-list-item (click)="logout()">
-                <h4>Sair</h4>
-              </mat-list-item>
-            </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-          <div style="height: 95vh;">
-            <router-outlet></router-outlet>
-          </div>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
+  <mat-toolbar color="primary" *ngIf="authService.isLogged | async">
+      <mat-toolbar-row>
+        <button mat-icon-button>
+          <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+      </mat-toolbar-row>  
+    </mat-toolbar>
+    <mat-sidenav-container>
+      <mat-sidenav class="example-sidenav"  #sidenav>
+          <mat-nav-list>
+            <mat-list-item *ngIf="authService.hasUser | async" [routerLink]="['/home']" >
+              <h4>Principal</h4>
+            </mat-list-item>
+            <mat-list-item *ngIf="authService.hasUser | async" [routerLink]="['/home-admin/portaria']">
+              <h4>Portaria</h4>
+            </mat-list-item>
+            <mat-list-item (click)="onLogout()">
+              <h4>Sair</h4>
+            </mat-list-item>
+          </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
 </ion-app>

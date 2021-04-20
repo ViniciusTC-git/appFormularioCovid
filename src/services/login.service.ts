@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from 'src/models/Usuario';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from  "@angular/fire/auth";
+import { IAuth } from 'src/interfaces/IAuth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private db: AngularFirestore) { }
-  public login(usuario:Usuario){
-    return this.db.collection("usuarios").ref
-    .where('senha','==',usuario.senha)
-    .where('email','==',usuario.email)
-    .get();
+  constructor(private auth: AngularFireAuth) {}
+
+  async login(auth: IAuth) {
+    const { email, senha } = auth;
+
+    return await this.auth.signInWithEmailAndPassword(email, senha)
   }
-  public validateUsuario(usuario:Usuario){
-    const consultaPassword = this.db.collection("usuarios").ref
-    .where('senha','==',usuario.senha)
-    .get();
-    const consultaPasswordEmail = this.db.collection("usuarios").ref
-    .where('email','==',usuario.email)
-    .get();
+
+  async cadastro(auth: IAuth) {
+    const { email, senha } = auth;
     
-    return Promise.all([consultaPassword,consultaPasswordEmail]);
+    return await this.auth.createUserWithEmailAndPassword(email, senha)
   }
+
+  async resetSenha(email: string) {
+    return await this.auth.sendPasswordResetEmail(email);
+  }
+
+  async verificarEmail() {
+    const user = await this.auth.currentUser;
+
+    return await user.sendEmailVerification()
+  }
+
 }

@@ -9,17 +9,19 @@ import { JsonConversion } from '../utils/JsonConversion';
 export class FormularioService{
   constructor(private db: AngularFirestore) {}
 
-  getFormsByUser(id:string){
+  getFormsByUser(id: string){
     return this.db.collection('usuarios')
       .doc(id)
       .collection('formularios')
       .snapshotChanges();
   }
+
   postForm(formulario:Formulario){
     return this.db.collection('usuarios')
       .doc(formulario.idUsuario)
       .collection('formularios')
       .add(JsonConversion.convertModelToJson(formulario))
+      
   }
 
 }

@@ -1,17 +1,18 @@
 import{ BaseEntity } from './BaseEntity';
 
 export class Formulario extends BaseEntity {
-    tosse:boolean = false;
-    febre:boolean = false;
-    cansaco:boolean = false;
-    dores:boolean = false;
-    conjuntivite:boolean = false;
-    dorDeGarganta:boolean = false;
-    dorDeCabeca:boolean = false;
-    dificuldadeRespiratoria:boolean = false;
+    tosse: boolean = false;
+    febre: boolean = false;
+    cansaco: boolean = false;
+    dores: boolean = false;
+    conjuntivite: boolean = false;
+    dorDeGarganta: boolean = false;
+    dorDeCabeca: boolean = false;
+    dificuldadeRespiratoria: boolean = false;
     outro: string = null;
-    idUsuario:string = null;
-    data:Date = new Date();
+    idUsuario: string = null;
+    data: Date = new Date();
+
     constructor(formulario:any){
         super();
         if(formulario){

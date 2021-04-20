@@ -14,11 +14,19 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthGuard } from 'src/services/auth.guard';
-import { AlertComponent } from './alert/alert.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { SheetComponent } from './components/sheet/sheet.component';
 
 @NgModule({
-  declarations: [AppComponent,AlertComponent],
-  entryComponents: [AlertComponent],
+  declarations: [
+    AppComponent,
+    AlertComponent,
+    SheetComponent
+  ],
+  entryComponents: [
+    AlertComponent,
+    SheetComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(), 

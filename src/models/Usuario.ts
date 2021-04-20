@@ -3,21 +3,23 @@ import { Formulario } from './Formulario';
 
 export class Usuario extends BaseEntity {
     nome: string = null;
-    setor:string = null;
-    email: string = null;
-    senha: string = null;
+    setor: string = null;
+    isRoot: boolean = false;
     formularios: Array<Formulario> = new Array();
-    constructor(formulario:any){
+
+    constructor(formulario: any) {
         super();
-        if(formulario){
-            this.ativo = true;
-            this.criado = new Date();
-            Object.entries(formulario).forEach(([key,value])=>{
-                if(this.hasOwnProperty(key)){
-                    this[key] = value;
-                }
-            });
-        }
+
+        if (!formulario) return;
+
+        this.ativo = true;
+        this.criado = new Date();
+
+        Object.entries(formulario).forEach(([key,value]) => {
+            if (this.hasOwnProperty(key)) {
+                this[key] = value;
+            }
+        });
     }
 }
 export class Setor{
