@@ -1,9 +1,23 @@
-mat-card {
-    margin-top: 3vh;
+.preenchido {
+    background-color: rgb(19, 145, 75);
+    color:white;
+    width: 80%;
+    margin-top: 5px;
 }
 
+.panel {
+    background-color: rgba(245, 245, 245, 0.446);
+    width: 95%;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: auto;
+}
+.sintomas-preenchidos {
+    margin-top: 10px;
+}
 .formulario {
-    height: 100vh;
+    margin-top: 10px;
+    margin-bottom: 80px;
 }
 .formulario mat-card-title, mat-icon {
     color:white;
@@ -14,6 +28,12 @@ mat-card {
 .formulario > mat-checkbox {
     color:white;
 }
-
+.mat-raised-button {
+    background-color: rgb(50, 42, 163);
+    color:white;
+}
+.danger-icon {
+    color: rgba(218, 3, 3, 0.652);
+}
 
 

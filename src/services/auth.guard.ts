@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       const isLogged = this.authService.isLogged.value ? true : false;
       const routes = { 
         '/login': () => !isLogged,
-        '/login/verificar-email': () => this.authService.hasEmailNotVerified,
+        '/login/verificar-email': () => this.authService.hasEmailNotVerified.value,
         '/home': () => isLogged,
         '/home-admin': () => isLogged,
         '/home-admin/portaria': () => isLogged

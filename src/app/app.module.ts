@@ -16,16 +16,19 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthGuard } from 'src/services/auth.guard';
 import { AlertComponent } from './components/alert/alert.component';
 import { SheetComponent } from './components/sheet/sheet.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
-    SheetComponent
+    SheetComponent,
+    SpinnerComponent
   ],
   entryComponents: [
     AlertComponent,
-    SheetComponent
+    SheetComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

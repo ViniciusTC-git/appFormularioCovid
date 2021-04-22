@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertService } from './alert.service';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
     private alertSrv: AlertService,
     private router: Router,
     public auth: AngularFireAuth,
+    private spinner: SpinnerService
   ) { 
     this.authLogin();
   }
