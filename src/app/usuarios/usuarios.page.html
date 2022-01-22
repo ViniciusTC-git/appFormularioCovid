@@ -1,0 +1,16 @@
+<mat-selection-list [multiple]="false">
+  <h2 style="color: white;" mat-subheader>Usuarios</h2>
+  <mat-list-option 
+    [routerLink]="['usuario', usuario.id]" 
+    style="color: white;"  
+    *ngFor="let usuario of usuarios" [value]="usuario">
+    <mat-icon *ngIf="!usuario.deletado" style="color: rgb(14, 228, 67)" mat-list-icon>person</mat-icon>
+    <mat-icon *ngIf="usuario.deletado"   style="color: rgb(194, 13, 13)" mat-list-icon>person_off</mat-icon>
+      <p mat-line>
+        {{ usuario.nome }} - {{ usuario.setor }}
+        <mat-icon *ngIf="!usuario.ativo" style="color: rgb(194, 13, 13)">gpp_bad</mat-icon>
+        <mat-icon *ngIf="usuario.ativo"  style="color: rgb(14, 228, 67)">verified_user</mat-icon>
+      </p>
+      <mat-divider></mat-divider>
+  </mat-list-option>
+</mat-selection-list>

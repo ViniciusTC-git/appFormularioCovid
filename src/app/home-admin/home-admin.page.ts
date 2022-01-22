@@ -3,6 +3,7 @@ import { UsuarioService } from 'src/services/usuario.service';
 import { FormularioService } from 'src/services/formulario.service';
 import { Usuario } from 'src/models/Usuario';
 import { Formulario, Sintoma } from 'src/models/Formulario';
+import { hasSintoma } from 'src/utils/Formulario';
 
 @Component({
   selector: 'app-home-admin',
@@ -14,50 +15,41 @@ export class HomeAdminPage implements OnInit {
   usuarios: Array<Usuario> = new Array();
   sintomas: Array<Sintoma> = [];
 
+  hasSintoma = hasSintoma;
+  
   constructor( 
-    private usuarioService:UsuarioService,
-    private formularioService:FormularioService,
-    private elRef: ElementRef
+    private usuarioService: UsuarioService,
+    private formularioService: FormularioService
   ) { 
-    this.sintomas = Object.keys(new Formulario(null)).map((key)=>{
-      return new Sintoma(key);
-    }).filter((sintoma)=>{
-      return Object.keys(sintoma).length !== 0;
-    })
+    this.sintomas = Object
+      .keys(new Formulario(null))
+      .map((key) => new Sintoma(key))
+      .filter((sintoma) => Object.keys(sintoma).length !== 0)
   }
 
   ngOnInit() {
-    const usuariosRequest =  this.usuarioService.getUsuarios();
-    usuariosRequest.subscribe((dataUsers)=>{
-      this.usuarios = dataUsers.map((dataUser) =>{
-        const usuario = Object.assign(new Usuario(null),dataUser.payload.doc.data());
-        usuario.id = dataUser.payload.doc.id
-        const formulariosRequest = this.formularioService.getFormsByUser(usuario.id);
-        formulariosRequest.subscribe((dataForms)=>{
-          usuario.formularios = dataForms.map((dataForm)=>{
-            return Object.assign(new Formulario(null),dataForm.payload.doc.data());
-          })
-        })
-        return usuario;
-      });
-    });
-  }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.checkItems();
-    }, 1000);
-  }
-  checkItems(){
-    const panels = this.elRef.nativeElement.querySelectorAll('.panel');
-    panels.forEach((panel)=> {
-        const lists = panel.querySelectorAll('mat-list');
-        lists.forEach((list) =>{
-          const itemLength = list.querySelectorAll('mat-list-item').length;
-          if(itemLength){
-            panel.classList.add("danger")
-          }
-        });
-    });
+    this.usuarioService
+      .getUsuarios()
+      .subscribe((usuarios) => {
+        const usuariosPayload = usuarios
+          .map(usuario => ({ 
+            id: usuario.payload.doc.id,
+            usuario: new Usuario(usuario.payload.doc.data())
+          }))
+          .filter(({ usuario }) => usuario.ativo && !usuario.deletado)
+
+        this.usuarios = usuariosPayload.map(({ usuario }) => usuario);  
+
+        usuariosPayload.forEach(({ id, usuario }) => {
+          this.formularioService
+            .getFormsByUser(id)
+            .subscribe((formularios) => {
+              usuario.formularios = formularios.map((formulario) => {
+                return new Formulario(formulario.payload.doc.data());
+              })
+            })
+        })  
+      })
   }
 
 }

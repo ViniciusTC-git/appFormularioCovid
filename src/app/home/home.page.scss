@@ -5,12 +5,22 @@
     margin-top: 5px;
 }
 
+.desabilitado {
+    background-color: rgb(138, 20, 20);
+    color:white;
+    width: 80%;
+    margin-top: 5px;
+}
+
+
+
 .panel {
     background-color: rgba(245, 245, 245, 0.446);
     width: 95%;
-    margin-left: auto;
     margin-top: 10px;
+    margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 .sintomas-preenchidos {
     margin-top: 10px;
@@ -19,21 +29,38 @@
     margin-top: 10px;
     margin-bottom: 80px;
 }
-.formulario mat-card-title, mat-icon {
+ mat-card-title, mat-icon {
     color:white;
 }
-.formulario > mat-card-actions {
+ mat-card-actions {
     text-align: center;
 }
-.formulario > mat-checkbox {
+mat-checkbox {
     color:white;
 }
+ mat-panel-description {
+    color: white;
+}
+ mat-panel-title {
+    color: white;
+}
+
 .mat-raised-button {
     background-color: rgb(50, 42, 163);
     color:white;
 }
 .danger-icon {
     color: rgba(218, 3, 3, 0.652);
+}
+
+.danger {
+    background-color: rgba(223, 2, 2, 0.755);
+    color: white;
+}
+
+.accordion {
+    width: 100%;
+    height: 100%;
 }
 
 

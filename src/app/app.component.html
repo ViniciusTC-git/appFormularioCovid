@@ -9,10 +9,15 @@
     <mat-sidenav-container>
       <mat-sidenav class="example-sidenav"  #sidenav>
           <mat-nav-list>
-            <mat-list-item *ngIf="authService.hasUser | async" [routerLink]="['/home']" >
+            <mat-list-item 
+              *ngIf="(authService.userId | async)" 
+              [routerLink]="[(authService.isRoot | async) ? '/home-admin' : '/home']" >
               <h4>Principal</h4>
             </mat-list-item>
-            <mat-list-item *ngIf="authService.hasUser | async" [routerLink]="['/home-admin/portaria']">
+            <mat-list-item *ngIf="authService.isRoot | async" [routerLink]="['/usuarios']" >
+              <h4>Usuarios</h4>
+            </mat-list-item>
+            <mat-list-item *ngIf="authService.isRoot | async" [routerLink]="['/home-admin/portaria']">
               <h4>Portaria</h4>
             </mat-list-item>
             <mat-list-item (click)="onLogout()">

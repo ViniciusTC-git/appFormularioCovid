@@ -51,8 +51,24 @@ h3{
     color:black
 }
 
+mat-card-title, mat-icon {
+    color:white;
+}
+ mat-card-actions {
+    text-align: center;
+}
+mat-checkbox {
+    color:white;
+}
+ mat-panel-description {
+    color: white;
+}
+ mat-panel-title {
+    color: white;
+}
+
 @media only screen and (max-width: 650px) {
     .card-form {
         width: 90%;
     }
-  }
+}

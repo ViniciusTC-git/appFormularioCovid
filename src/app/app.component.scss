@@ -2,15 +2,53 @@
 
 .content {
     background-color: #34568B;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
 }
 
 mat-sidenav {
     width: 15%;
 }
-mat-sidenav-content {
-    height: 100vh;
+::ng-deep .mat-focused {
+    color: rgb(255, 255, 255) !important;
 }
 
+::ng-deep  .mat-form-field-label{
+  color: rgb(255, 255, 255) !important;
+}
+::ng-deep  .mat-form-field-underline {
+  background-color: rgb(255, 255, 255) !important;
+} 
+::ng-deep .mat-slide-toggle {
+  margin-right: 5%;
+}
+::ng-deep .mat-checked {
+  .mat-slide-toggle-thumb {
+    background-color: #17bdc9 !important;
+  }
+  .mat-slide-toggle-bar {
+    background-color: #17bdc967 !important;
+  }  
+}
+
+::ng-deep  .mat-form-field-ripple {
+  background-color: rgb(255, 255, 255) !important;
+}
+::ng-deep .mat-select-value-text {
+  color: rgb(255, 255, 255) !important;
+}
+::ng-deep .mat-slide-toggle-content {
+  color: white;
+}
+::ng-deep .mat-mini-fab {
+    background-color: #17bdc9 !important;
+    color:white !important;
+}
+::ng-deep  .mat-button-disabled {
+    background-color: #6a6a6a56 !important;
+    color:white !important;
+}
 @media only screen and (max-width: 650px) {
     mat-sidenav {
         width: 40%;

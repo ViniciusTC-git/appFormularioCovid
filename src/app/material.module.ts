@@ -22,7 +22,7 @@ import{MatCheckboxModule} from '@angular/material/checkbox';
 import{MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -46,7 +46,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatBottomSheetModule
+    MatBottomSheetModule, 
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }

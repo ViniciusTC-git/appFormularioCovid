@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'home', loadChildren:() => import('./home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard] },
   { path: 'home-admin', loadChildren: () => import('./home-admin/home-admin.module').then( m => m.HomeAdminPageModule), canActivate: [AuthGuard]},
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
+  { path: 'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule), canActivate: [AuthGuard] },
 ];
 
 @NgModule({

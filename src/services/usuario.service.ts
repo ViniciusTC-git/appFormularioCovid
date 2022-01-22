@@ -11,24 +11,34 @@ export class UsuarioService {
   constructor(private db: AngularFirestore) {}
 
   getUsuarios() {
-    return this.db.collection('usuarios')
-    .snapshotChanges();
+    return this.db
+      .collection('usuarios')
+      .snapshotChanges();
   }
 
   getUsuario(id: string) {
     return this.db.collection('usuarios').ref
-    .where('id','==',id)
-    .get()
+      .where('id','==',id)
+      .get()
   
   }
+
+  async isRoot(id: string) {
+    const { docs } = await this.db.collection('usuarios').ref
+      .where('id','==', id)
+      .get()
+
+    return docs[0].data()['isRoot']; 
+  }
+
   postUsuario(usuario:Usuario){
     return this.db.collection('usuarios')
     .add(JsonConversion.convertModelToJson(usuario));
   }
 
-  putUsuario(usuario:Usuario){
+  putUsuario(usuario: Usuario, id: string){
     return this.db.collection('usuarios')
-    .doc(usuario.id)
+    .doc(id)
     .update(JsonConversion.convertModelToJson(usuario))
   }
 

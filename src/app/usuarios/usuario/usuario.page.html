@@ -1,0 +1,26 @@
+<form [formGroup]="userForm">
+  <mat-form-field appearance="legacy">
+    <mat-label>Nome</mat-label>
+    <input formControlName="nome" matInput required>
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Setor</mat-label>
+    <mat-select formControlName="setor" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let setor of setores.nomes" [value]="setor">
+        {{ setor }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-slide-toggle formControlName="isRoot">Administrador</mat-slide-toggle>
+  <mat-slide-toggle formControlName="ativo">Ativo</mat-slide-toggle>
+  <mat-slide-toggle formControlName="deletado">Deletado</mat-slide-toggle>
+</form>
+<div class="btn-group-right">
+  <button [routerLink]="['/usuarios']"  mat-mini-fab>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button [disabled]="userForm.invalid" (click)="onSave()"  mat-mini-fab>
+    <mat-icon>check</mat-icon>
+  </button>
+</div>

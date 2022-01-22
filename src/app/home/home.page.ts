@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef } from '@angular/core';
-import { Usuario, Setor } from '../../models/Usuario';
+import { Usuario } from '../../models/Usuario';
 import {UsuarioService} from '../../services/usuario.service';
 import { Formulario, Sintoma } from '../../models/Formulario';
 import { MatAccordion } from '@angular/material/expansion';
@@ -7,16 +7,16 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Validator } from '../../models/Validator';
 import { FormularioService } from '../../services/formulario.service';
-import { Router } from '@angular/router';
 import { SpinnerService } from 'src/services/spinner.service';
 import { AlertService } from 'src/services/alert.service';
+import { hasSintoma } from 'src/utils/Formulario';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   isSubmitToday: boolean = null;
@@ -26,6 +26,8 @@ export class HomePage implements OnInit{
   formularioForm: FormGroup;
   validationMessage: Validator;
   sintomas: Array<Sintoma> = [];
+  
+  hasSintoma = hasSintoma;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -35,7 +37,6 @@ export class HomePage implements OnInit{
     private spinner: SpinnerService,
     private alert: AlertService,
   ) {
-    
     this.formularioForm = this.form.group({
       febre: false,
       tosse: false,
@@ -56,7 +57,7 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit() {
-    this.auth.hasUser.subscribe(e => !e || this.getUsuario(e))
+    this.auth.userId.subscribe(e => !e || this.getUsuario(e))
   }
 
   private async getUsuario(id: string) {
@@ -68,10 +69,19 @@ export class HomePage implements OnInit{
 
     this.formularioForm.get('idUsuario').setValue(docs[0].id);
 
+    const orderByDate = (a: Formulario, b: Formulario) => {
+      const dataA = new Date(a.criado).getTime();
+      const dataB = new Date(b.criado).getTime();
+
+      return dataA > dataB ? -1 : dataB > dataA ? 1 : 0; 
+    }
+
     this.formularioService
       .getFormsByUser(docs[0].id)
       .subscribe((formularios) => {
-        this.usuario.formularios = formularios.map((formulario) => new Formulario(formulario.payload.doc.data()));
+        this.usuario.formularios = formularios
+          .map((formulario) => new Formulario(formulario.payload.doc.data()))
+          .sort(orderByDate);
 
         this.hasSubmit();
         this.spinner.hide();

@@ -6,6 +6,7 @@ import { AlertService } from '../../services/alert.service';
 import { Validator } from '../../models/Validator';
 import { SheetService } from 'src/services/sheet.service';
 import { UsuarioService } from 'src/services/usuario.service';
+import { SpinnerService } from 'src/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,8 @@ export class LoginPage implements OnInit {
     private usuarioService: UsuarioService,
     private form: FormBuilder,
     private alert: AlertService,
-    private sheet: SheetService
+    private sheet: SheetService,
+    private spinner: SpinnerService
   ) { 
     this.userResetPasswordForm = this.form.group({
       email: ['',Validators.compose([
@@ -89,10 +91,13 @@ export class LoginPage implements OnInit {
 
   async onLogin() {
     if (!this.userLoginForm.valid) return;
-    
+
+    this.spinner.open();
+
     this.loginService
       .login(this.userLoginForm.value)
       .catch(({ code }) => this.alert.open(this.error[code], 'danger', 6000))
+      .finally(() => this.spinner.hide())
   }
 
   async onOptions() {
@@ -103,9 +108,9 @@ export class LoginPage implements OnInit {
   }
   
   async onCadastro() {
-    const [  email, nome, setor, senha, confirmaSenha ] = ['email', 'nome','setor', 'senha', 'confirmSenha'].map(key => this.userCadastroForm.get(key).value)
+    const { email, nome, setor, senha, confirmSenha } = this.userCadastroForm.value
 
-    if (senha !== confirmaSenha) {
+    if (senha !== confirmSenha) {
       this.alert.open('Senhas não conferem !', 'warning', 3000);
       return;
     }
